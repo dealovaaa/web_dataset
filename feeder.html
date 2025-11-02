@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feeder Control</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-body">
+  <div class="sidebar">
+    <h2>SmartFeeder</h2>
+    <a href="dashboard.html">🏠 Dashboard</a>
+    <a href="feeder.html" class="active">🐟 Feeder</a>
+    <a href="login.html">🚪 Logout</a>
+  </div>
+
+  <div class="main-content">
+    <h1>Kontrol Feeder</h1>
+    <div class="feeder-box">
+      <h3>Manual Control</h3>
+      <div class="button-group">
+        <button class="btn-on" onclick="alert('Feeder Dinyalakan 🟢')">ON</button>
+        <button class="btn-off" onclick="alert('Feeder Dimatikan 🔴')">OFF</button>
+      </div>
+    </div>
+
+    <div class="schedule-box">
+      <h3>Jadwal Otomasi</h3>
+      <div class="schedule-list">
+        <label><input type="checkbox" checked> 08:00</label>
+        <label><input type="checkbox" checked> 12:00</label>
+        <label><input type="checkbox" checked> 18:00</label>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

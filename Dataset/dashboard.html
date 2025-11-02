@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Smart Feeder</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>🐟 SmartFeeder</h2>
+    <a href="dashboard.html" class="active">🏠 Dashboard</a>
+    <a href="feeder.html">⚙️ Feeder</a>
+    <a href="login.html">🚪 Logout</a>
+  </div>
+
+  <div class="main-content">
+    <h1>Dashboard Utama</h1>
+
+    <!-- ======== STATUS CARD ======== -->
+    <div class="cards">
+      <div class="card">
+        <h3>Status Feeder</h3>
+        <p><span class="status online"></span> Aktif</p>
+      </div>
+      <div class="card">
+        <h3>Jadwal Terakhir</h3>
+        <p>12:00 - Berhasil Memberi Pakan</p>
+      </div>
+      <div class="card">
+        <h3>Jumlah Pakan Hari Ini</h3>
+        <p>3 kali</p>
+      </div>
+      <div class="card">
+        <h3>Dataset Ikan</h3>
+        <p><span id="dataset-count">0</span> jenis | <span id="image-count">0</span> gambar</p>
+      </div>
+    </div>
+
+    <!-- ======== GRAFIK + DATASET (DUA KOLOM) ======== -->
+    <div class="data-section">
+      <!-- Grafik -->
+      <div class="chart-container">
+        <h2>Grafik Pemberian Pakan Mingguan</h2>
+        <canvas id="feedChart"></canvas>
+      </div>
+
+      <!-- Dataset -->
+      <div class="dataset-section">
+        <h2>📸 Dataset Gambar Ikan</h2>
+        <div class="dataset-gallery"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===================== GRAFIK =====================
+    const ctx = document.getElementById('feedChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+        datasets: [{
+          label: 'Jumlah Pemberian Pakan',
+          data: [3, 2, 3, 4, 3, 2, 1],
+          backgroundColor: '#36a2eb'
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // ===================== DATASET =====================
+    const gallery = document.querySelector('.dataset-gallery');
+    const folders = ['Jahir', 'Nila', 'Mas']; // nama folder dataset kamu
+    let totalImages = 0;
+
+    folders.forEach(folder => {
+      for (let i = 1; i <= 2; i++) {
+        const img = document.createElement('img');
+        img.src = `Dataset/Image/${folder}/${folder.toLowerCase()}${i}.jpg`;
+        img.alt = `${folder} ${i}`;
+        gallery.appendChild(img);
+        totalImages++;
+      }
+    });
+
+    document.getElementById('dataset-count').innerText = folders.length;
+    document.getElementById('image-count').innerText = totalImages;
+  </script>
+</body>
+</html>
